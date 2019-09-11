@@ -1,0 +1,33 @@
+Comandos basicos:
+
+1. ls -l podemos ver que tipo de archivos son (en columnas)
+
+get-metadata.com -> me deja verificar que tipo de info tiene ese archivo.
+En linux, no importa la extension (como en windows) si no el metadato (son datos acerca de datos).
+
+hexedit -> si yo utilizo un editor hexadecimal, y cambio el archivo, el sistema no reconoce el archivo como el tipo que es
+
+ls
+ls -l
+ls -a
+
+"." -> directorio donde estoy parado
+".." -> un directorio para atras
+sudo su - -> el menos me levanta el perfil, si no le indico nada me lleva al root. permite limitar y seleccionar el uso de la aplicaciones.
+para salir del "sudo su -" -> ctrl+d
+
+~
+
+"cd .." me lleva al directorio principal, para irme hago cd /home/usuario
+
+proc# ls -> me permite terminar un proceso a traves de un identificador numerico unico.
+
+el proceso init (1 como identificador) -> inicializa los procesos de servicios y de sistemas operativos. es el proceso padre de todos los procesos.
+
+more para ir linea por line y less para que me destaque ciertos caracteres.,
+
+las banderas te permite adaptar un programa para solo un procesador con un compilador que lea esa bandera especiifca
+
+
+
+
