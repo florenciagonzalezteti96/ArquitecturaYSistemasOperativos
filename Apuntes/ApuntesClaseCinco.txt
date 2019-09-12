@@ -93,7 +93,7 @@ para borrar la pantalla ctrl+l
 172.105.153.22
 
 user: apellido.primeraletradelapellido.nombre
-pass: 
+pass: 123
 
 puTTY -> te conectas a servidores.
 
