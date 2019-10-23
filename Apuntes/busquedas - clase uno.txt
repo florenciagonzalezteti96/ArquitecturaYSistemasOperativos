@@ -1,0 +1,55 @@
+wc -l 1 -> una linea
+grep -i 'eko' -> que comienza con esa palabra
+a=`grep 'root' -> todo lo que tenga esa palabra se guarda en a
+grep "`[a-z]" -> me devuelve solo letras
+grep "`[a-9]" -> indico un rango de numeros
+
+PARA CREAR ARCHIVOS -> #NANO ARCHIVO.TXT -> PARA SALIR CTRL+X
+para ver que contiene el archivo -> CAT ARCHIVO.TXT
+
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,3}+\.[a-zA-Z]{2,3}-> para mails
+^[a-zA-Z0-9._%+-]+@ -> el mas antes del arroba permite que busque mas de una expresion asi. o sea una linea con mas de un numero o letra antes de un arroba
+[a-zA-Z0-9]+ -> igual que se repita
+\. -> caracter propio del dominio, no es una expresion regular(por eso la contrabarra)
+\.[a-zA-Z]{2,3}+ -> .eu, .com, etc, es decir, mas de una letra pero no mas de tres
+si quiero que busque el mail en todos lados y no solo al principio de la linea le saco el simbolo "^"
+RFC -> una lista de protocolos
+
+172.105.153.22 -> direccion IP de la maquina virtual, contraseña 123
+
+
+sed 's/Root/ROOT' -> me cambia la primera coincidencia de Root por ROOT
+sed 's/Root/ROOT/g' -> toda las coincidencias de la linea. 
+SED NO TOCA EL ARCCHIVO, SOLO CAMBIA LO QUE MUESTRO EN LA PANTALLA
+sed -i '/Root/d' archivo.txt -> SI MODIFICA EL ARCHIVO. crea un archivo en tmp y el tmp modificado lo reemplaza en el original
+
+PERMISOS
+
+ELF -> compila
+/dev -> b -> bloques de almacenamiento
+un binario tiene que tener la opcion x para que sea ejecutado
+ls -ld /etc -> me muestra los permisos sin meterse en el directorio
+comando touch crea un archivo si no existe me lo crea en 0byte, si existe me cambia la fecha
+cambiarle la hora me permite actualizar a un archivo, por si un programa necesita que todas sus partes esten actualizadas
+permisos totales -> 7 (valor de permisos)
+chmod me permite cambiar los permisos (421 o 124) 
+chmod 777 -> me permite asignarle permiso total a todos los grupos
+rwx -> 421
+si yo tengo un directorio, yo puedo hacer un chmod -R 777 y el nombre del directorio. la -R me cambia todos los permisos de esos directorios
+a permisos totales. la -r o -R es recursivo.
+Si yo modifico un archivo y ese necesita ciertos permisos para ser ejecutado, puede que no se pueda abrir en el futuro
+chown -> me permite agregar quien es el dueño y opcionalmente con ":" indicarle tambien el grupo. por defecto tengo que declarar al dueño del archivo
+yo como usuario no puedo cambiar el grupo exterior al mio o el administrador, eso solo lo puede hacer el admin
+chown por defecto, OBLIGATORIAMENTE, tengo que cambiar el dueño
+chgrp -> solo me modifica el grupo. si quiero mantener el usuario y solo cambiar el grupo.
+
+tengo que crear un directorio principal antes de crear los otros
+
+mkdir -p a/b/{c,d}
+hardware, kernel, 4lib, que es gnu, que es linux, cuales son las ventajas de la virtualizacion
+hypervisor, grafico de hypervisor(que es un kernel), dif. entre un directorio absoluto y relativo
+
+simbolico ln -s
+ls -li cada inodo contiene cierta info del archivo
+
+

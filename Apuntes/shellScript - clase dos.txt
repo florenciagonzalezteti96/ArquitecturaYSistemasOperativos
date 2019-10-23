@@ -1,0 +1,14 @@
+script bash
+
+el > (solo un mayor) me sobreescribe el archivo de destino. El >> me agrega al archivo del destino
+puedo hacer una busqueda sobre la salida en pantalla de un programa (ECHO) -> ./ejec01.sh grep -i 'hola'
+puedo guardar la salida de un programa en otro archivo ->./ejec01.sh >> arch01.csv
+el pipe permite que la salida del archivo de un comando te la tome otro comando, pero no se ejecuta sobre el archivo de programa especifico ( | )
+las variables de entorno estan por lo general en mayuscula
+echo $PATH para ejecutar variables de entorno
+En el ejercicio dos de la presentacion: NOMBRE no exite por fuera del archivo
+Se puede llamar a un archivo dentro de otro archivo
+
+` -> que ejecute ese comando
+< -> le da como entrada el archivo
+el for toma los espacios como saltos de linea, el while no

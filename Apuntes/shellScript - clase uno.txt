@@ -1,0 +1,80 @@
+sudo su - : me permite acceder al root con el perfil del usuario
+putty -> programa open source
+Dentro de /etc, existen los siguientes archivos que son todos del usuario
+	/passwd -> info del usuario
+	/shadow -> contraseña del usuario
+	/group -> grupos que estan dados de alta
+	more passwd -> primera columna es el usuario
+			identificador del usuario (valor unico)
+			identific del grupo
+			directorio del usuario
+			shell
+El identificador del root siempre va a ser 0
+por lo general, a partir de 1000 son usuarios normales (en linux), dentro del /home estan los usuarios normales, dentro del /root estan los usuarios del admin
+id -> para obtener info sobre los usuarios, grupos principales y grupos adicionales
+syslog es un servicio, un usuario que mantiene los log de todos
+el passwd y group podes acceder como usuario, pero el shadow tengo que entrar como root
+$algoritmoparagenerarlacontraseña$semillavagenerandolacontraseña$contraseña
+useradd -> si no devuelve nada por pantalla sigifica que esta todo ok
+si el grupo en el que creo el nuevo usuario no existe me lo crea
+para darle una nueva contraseña a un grupo hago desde el root passwd nombre_del_grupo
+login desde el root -> para salir uso exit o ctrl+d
+useradd (agrego un usuario)
+usermod(modifico un usuario) -> -G como grupo adicional
+me reemplaza lo que existe o el pongo -a para que no me reemplace todos los grupos adicionales que ya tenia
+groupadd -> agrego un grupo
+groudel -> borro el grupo
+cuando hago un id desde un usuario y me muestra el identificador pero no el nombre del grupo, significa que el grupo fue eliminado
+userdel o userdel -r -> borra los usuarios de forma recursiva
+usermod -s /bin/false -> bloquear al usuario
+
+
+programacion en shell
+ejecuto un comando y me devuelve una variable y dependiendo de esa variable
+yo decido que hacer
+cat /etc/shells -> me da los interpretes que tengo instalados en el SO
+nano -> editor de texto
+nano nombre_del_prog.sh -> .sh significa que es un shellscript
+!/bin/bash me permite indicar que bash va a usar el programa
+chmod +x nombre_del_prog.sh -> me permite cambiar quien puede ejecutar el prog
+./prog01.sh -> me ejecuta la accion que guarde en el programa (echo "HOla MUndo")
+env para ver variables de entorno -> ver que tipo de shell utilizo, que lenguaje uso dentro del SO, con que usuario estoy logeado, que directorio, los colores por archivo, el nombre del usuario, directorio anterior, cuenta de correo
+variables de entorno estan en MAYUSCULA. para ver el contenido de una vdeent en particular
+comando echo ->  echo $PATH para ver el contenido de la variable de entorno
+si tengo un programa en mas de un directorio tendria que ir a un directorio donde yo lo quiero ejecutar y hacer ./prog
+nano .bashrc para agregar una variable de entorno nueva y despues tengo que hacer (. .bashrc) para que vuelva a cargar el archivo con las actualizaciones y despues hago echo de la nueva variable
+como setear la variable de entorno -> unset para que la variable ya no tenga un contenido, elimina la variable (si yo entro al nano y la modifico, la variable sigue existiendo, asi con el unset me la limpia)
+cuando yo hago un echo automaticamente me hace un salto de linea, pero con -n me continua en la misma linea
+en las condiciones if tengo que poner espacios entre 
+for i in {1..5}-> en 1..5 defino un rango que se va a ir guardando en i (1..5 in i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
