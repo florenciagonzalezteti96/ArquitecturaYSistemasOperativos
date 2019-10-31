@@ -1,0 +1,62 @@
+Particiones:
+
+Para crear los nuevos discos duros, selecciono agregar un disco duro en la VM.
+Luego de crear los discos, abro la maquina virtual.
+
+Para ver toda la info que levanto el SO desde que booteo:
+
+dmesg | more
+dmesg | grep 'sd' | more -> informacion sobre los discos que encontro
+sda es el disco principal y sdb y sdc son los discos que agregamos despues.
+
+Particiones -> tenemos un disco virgen y hay que generar la tabla de particiones. En total puedo tener hace 15 o 16 particiones.
+	       puedo asignar a diferentes directorios a diferentes particiones
+
+fdisk -l /dev/sda -> me devuelve info sobre el disco principal
+
+Ingreso fdisk /dev/sdb (para acceder a las opciones de crear y modificar particiones), y luego: 
+
+opciones:
+
+p -> muestra las particiones que existen
+m -> todos los comandos para particiones
+n -> para empezar a crear particiones
+	-> particiones primarias -> last sector -> le doy el tamaño +10MB (porque si ingreso 10MB, me determina el tamaño como menos de 10MB)
+	Solo puedo tener 4 particiones primarias.
+	-> particiones extendidas -> las particiones logicas que toman el valor de las extendidas
+	Sobre las particiones extendidas puedo crear las logicas. Si sigo creando sobre la extendida 
+	va tomando espacio de memoria de la particion extendida
+d -> elimina particiones
+t -> cambia el tipo de particion que es, introduciendo el codigo (82 es para cambiar a tipo swap y 8e para cambiar a LVM)
+w -> graba la tabla de particiones, contiene todos los datos de particiones que yo fui creando
+q -> para salir
+
+mkswap /dev/sdc1 -> la particion debe ser de tipo swap para poder formatearla
+swapon /dev/sdb1 -> para que levante la particion (primero hay que formatearla con mkswap). Si yo apago el equipo, estos datos se borran.
+cat /proc/swaps -> para ver que swaps tiene instalado el SO
+nano /etc/fstab -> me indica que particiones va a levantar en tiempo de booteo y agrego las particiones, ej: "/dev/sdb1 none swap sw" (origen, filesystem, extension, y tipo). Y ya me los graba.
+swapoff -> para desmontar las particiones
+mount -a -> me relee el archivo /etc/fstab y me monta los que estan desmontados
+umount "/directorio donde monte la particion" -> me desmonta la particion de un directorio
+mkfs.ext particion  -> me permite formatear las particiones
+df -h -> para que me muestre los discos montados
+lost+found -> cada vez que lee un directorio y hay un archivo que no pudo abrir o leyo mal lo guarda aca.
+**para desmontar tengo que salir del directorio
+
+LVM:
+
+Sobre los discos virtuales, creamos las particiones. Si me quedo sin espacio en un disco puedo darle espacio de otro disco. Tambien puedo agrupar las particiones que cree en grupo, y el tamaño del grupo es la suma total del tamaño de todas las particiones.
+Los grupos me permiten que pueda sacar una particion de grupo B a grupo A para que grupo A se expanda mas. Puedo crear grupos de particiones y empezar a agruparlos y darle n tamaño especifico a cada grupo. 
+El tipo de particion 8e, entiende LVM, y me permite interpretar esa particion y poder agruparlos.
+
+pvcreate -> para crear volumenes fisicos
+pvs -> para mostrar los volumenes creados
+pvdisplay -> muestra con mas info los volumenes que acabo de crear
+
+A partir de la creacion de volumenes fisicos comienza el uso de LVM.
+
+vgcreate -> para agrupar volumenes fisicos creados
+bgs -> para mostrar info sobre los grupos de volumenes
+lvcreate -l+100%FREE -n "nombre del volumen logico" "nombre del grupo de volumenes" -> para que utilice el 100% del espacio del grupo de volumenes
+lvs -> me muestra info sobre los volumenes logicos
+**poweroff apaga la VM
